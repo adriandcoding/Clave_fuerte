@@ -1,37 +1,37 @@
 import {
-    tieneCaracteresEspeciales,
-    tieneLongitudMinima,
-    tieneMayusculasYMinusculas,
-    tieneNumeros,
-    tieneNombreUsuario,
-    tienePalabrasComunes,
-} from "./clave_fuerte-helper"
+  tieneCaracteresEspeciales,
+  tieneLongitudMinima,
+  tieneMayusculasYMinusculas,
+  tieneNumeros,
+  tieneNombreUsuario,
+  tienePalabrasComunes,
+} from "./clave_fuerte-helper";
 const validarClave = (
-    nombreUsuario: string,
-    clave: string,
-    commonPasswords: string[]
+  nombreUsuario: string,
+  clave: string,
+  commonPasswords: string[]
 ): ValidacionClave => {
-    const validaciones = [
-        tieneCaracteresEspeciales(clave),
-        tieneLongitudMinima(clave),
-        tieneMayusculasYMinusculas(clave),
-        tieneNumeros(clave),
-        tieneNombreUsuario(nombreUsuario, clave),
-        tienePalabrasComunes(clave, commonPasswords),
-    ];
-    const validacionesValidas = validaciones.filter(validacion => validacion.esValida);
-    if (validacionesValidas.length === validaciones.length) {
-        return { esValida: true };
-    } else {
-        return {
-            esValida: false,
-            error: validacionesValidas[0].error,
-        };
-    }
-
-
-    
-
-}
-
-
+  const validaciones = [
+    tieneCaracteresEspeciales(clave),
+    tieneLongitudMinima(clave),
+    tieneMayusculasYMinusculas(clave),
+    tieneNumeros(clave),
+    tieneNombreUsuario(nombreUsuario, clave),
+    tienePalabrasComunes(clave, commonPasswords),
+  ];
+  const resultado = validaciones.find((validacion) => !validacion.esValida);
+  if (resultado) {
+    return resultado;
+  } else {
+    return { esValida: true };
+  }
+};
+console.log(
+  validarClave("admin", "admN123", [
+    "password",
+    "123456",
+    "qwerty",
+    "admin",
+    "letmein",
+  ])
+);

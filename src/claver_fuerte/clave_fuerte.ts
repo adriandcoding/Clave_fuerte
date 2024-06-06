@@ -6,12 +6,12 @@ import {
   tieneNombreUsuario,
   tienePalabrasComunes,
 } from "./clave_fuerte-helper";
-const validarClave = (
+export const validarClave = (
   nombreUsuario: string,
   clave: string,
   commonPasswords: string[]
 ): ValidacionClave => {
-  const validaciones = [
+  const ejemplosDeValidacion = [
     tieneCaracteresEspeciales(clave),
     tieneLongitudMinima(clave),
     tieneMayusculasYMinusculas(clave),
@@ -19,15 +19,12 @@ const validarClave = (
     tieneNombreUsuario(nombreUsuario, clave),
     tienePalabrasComunes(clave, commonPasswords),
   ];
-  const resultado = validaciones.find((validacion) => !validacion.esValida);
-  if (resultado) {
-    return resultado;
-  } else {
-    return { esValida: true };
-  }
-};
+  const resultado = ejemplosDeValidacion.find((validacion) => !validacion.esValida);
+  return resultado ? resultado : { esValida: true }
+}
+
 console.log(
-  validarClave("admin", "admN123", [
+  validarClave("admin", "32323*22Mn", [
     "password",
     "123456",
     "qwerty",

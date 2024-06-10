@@ -26,7 +26,7 @@ export const validarClave = (
 };
 
 console.log(
-  validarClave("admin", "32323*22Mn", [
+  validarClave("admin", "32*3322Mn", [
     "password",
     "123456",
     "qwerty",

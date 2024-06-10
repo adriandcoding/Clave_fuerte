@@ -19,9 +19,11 @@ export const validarClave = (
     tieneNombreUsuario(nombreUsuario, clave),
     tienePalabrasComunes(clave, commonPasswords),
   ];
-  const resultado = ejemplosDeValidacion.find((validacion) => !validacion.esValida);
-  return resultado ? resultado : { esValida: true }
-}
+  const resultado = ejemplosDeValidacion.find(
+    (validacion): boolean => !validacion.esValida
+  );
+  return resultado || { esValida: true };
+};
 
 console.log(
   validarClave("admin", "32323*22Mn", [

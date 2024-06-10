@@ -2,11 +2,11 @@ export const tieneMayusculasYMinusculas = (clave: string): ValidacionClave => {
   let tieneMinuscula = false;
   let tieneMayuscula = false;
 
-  for (const element of clave) {
-    if (element >= "a" && element <= "z") {
+  for (const caracter of clave) {
+    if (caracter >= "a" && caracter <= "z") {
       tieneMinuscula = true;
     }
-    if (element >= "A" && element <= "Z") {
+    if (caracter >= "A" && caracter <= "Z") {
       tieneMayuscula = true;
     }
     if (tieneMinuscula && tieneMayuscula) {
@@ -21,8 +21,8 @@ export const tieneMayusculasYMinusculas = (clave: string): ValidacionClave => {
 };
 
 export const tieneNumeros = (clave: string): ValidacionClave => {
-  for (const element of clave) {
-    if (element >= "0" && element <= "9") {
+  for (const caracter of clave) {
+    if (caracter >= "0" && caracter <= "9") {
       return { esValida: true };
     }
   }
@@ -32,8 +32,8 @@ export const tieneNumeros = (clave: string): ValidacionClave => {
 
 export const tieneCaracteresEspeciales = (clave: string): ValidacionClave => {
   const caracteresEspeciales = '!@#$%^&*(),.?":{}|<>';
-  for (const element of clave) {
-    if (caracteresEspeciales.includes(element)) {
+  for (const caracter of clave) {
+    if (caracteresEspeciales.includes(caracter)) {
       return { esValida: true };
     }
   }
